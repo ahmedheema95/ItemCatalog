@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Shopping</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+  <header id="header">
+  <br>
+    <div id="title"<h1>Online Shopping Catalog</h1></div>
+	<div id =log_detail><span>Logged in as {{log}}</span></div>
+  </header>
+<main class="itemdetails_container">
+<div id="intenaldetailcontiner">
+<label class="w3-text-blue"><h3><b>Name :</b></h3></label>
+<div class="itemdetail"><h4>{{item.name}}</h4></div>
+<label class="w3-text-blue"><h3><b>Description :</b></h3></label>
+<div class="itemdetail"><h4>{{item.description}}</h4></div>
+<label class="w3-text-blue"><h3><b>Price :</b></h3></label>
+<div class="itemdetail"><h4>{{item.price}}</h4></div>
+<label class="w3-text-blue"><h3><b>State :</b></h3></label>
+<div class="itemdetail"><h4>{{item.item_state}}</h4></div>
+</div>
+<div id="modifyitems">
+<a href = '{{url_for('editItem', item_id = item.id ,category_id=specific_category.id)}}'class="modify_btn">Edit</a>
+<span>|</span>
+<a href = '{{url_for('deleteItem', item_id = item.id,category_id=specific_category.id)}}'class="modify_btn">Delete</a> 
+</div>
+</main>
+{% if log_type == 1 %}
+	<div id="log_out"><a href='{{ url_for('gdisconnect') }}' class="log_outbtn">Google Logout</a></div>
+{% endif %}
+{% if log_type == 2 %}	
+	<div id="fblog_outbtn"><a href='{{ url_for('fbdisconnect') }}' class="log_outbtn">Facebook Logout</a></div>
+{% endif %}
+	<div id="backhome"><a href='{{ url_for('homePage') }}' class="homebtn">Back to home</a></div>
+</body>
+</html>
+
+
+
+
+
+
+
