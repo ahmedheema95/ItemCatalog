@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Shopping</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<body>
+  <header id="header">
+  <br>
+    <div id="title"<h1>Online Shopping Catalog</h1></div>
+	<div id =log_detail><span>Logged in as {{log}}</span></div>
+<div id="result"></div>
+  </header>
+<main class="container">
+
+<section class="categories">
+<div id="categmedia"><h1>Categories</h1></div>
+<div id="category_list">
+{% for i in categories %}
+<a href = '{{url_for('showItems', category_id = i.id)}}' class="categories_link">{{i.name}}</a> 
+<br>
+{% endfor %}
+</div>
+</section>
+<div class="vll"></div>
+<section class = "items_page">
+
+<h1>Items</h1>
+{% if not items %}
+<div id="emptyitems"><h3>Empty Category !!</h3></div>
+{% endif %}
+<div id="item_list">
+{% for i in items %}
+<a href = '{{url_for('showitemDetails', item_id = i.id,category_id=i.category_id)}} 'class="items_link">{{i.name}}</a>
+
+<br>
+{% endfor %}
+</div>
+</section>
+<div id="addstyle">
+<a href = '{{url_for('addItem', category_id = specific_category.id)}}'class="items_link" >Add Item</a>
+	</div>
+</main>
+{% if log_type == 1 %}
+	<div id="log_out"><a href='{{ url_for('gdisconnect') }}' class="log_outbtn">Google Logout</a></div>
+{% endif %}
+{% if log_type == 2 %}	
+	<div id="fblog_outbtn"><a href='{{ url_for('fbdisconnect') }}' class="log_outbtn">Facebook Logout</a></div>
+{% endif %}
+<div id="backhome"><a href='{{ url_for('homePage') }}' class="homebtn">Back to home</a></div>
+</body>
+</html>
